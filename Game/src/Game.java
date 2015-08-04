@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;;
 
 public class Game {
 
@@ -9,13 +10,27 @@ public class Game {
 	 
 		System.out.println("Enter a number");
 		String s = in.next();
+	
+
+		String regex = "3";
+		String buzzer = "Bum";
+
+		Pattern p = Pattern.compile(regex);
 		
-		if (s.contains("3"))		
-			System.out.println("Boom");
-		else if (s.contains("7"))
-			System.out.println("Pam");
-		else if (s.contains("9"))
-			System.out.println("Else");
+		String HasMatch = matchesPattern(p,s,buzzer);
+		
+		if(HasMatch != null)
+			System.out.println(HasMatch);		
 	}
+   
+	private static String matchesPattern(Pattern p,String s, String buzzer) {
+	     Matcher m = p.matcher(s);
+
+	     if (m.find()) {
+	       return buzzer;
+	     }
+
+	     return null;
+	   }
     
 }
