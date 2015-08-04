@@ -15,6 +15,8 @@ public class Game {
 			System.out.println("Boom");
 		else if (a % 10 == 7)
 			System.out.println("Pam");
+		else if (a % 10 == 9)
+			System.out.println("Else");
 	}
     
 }
