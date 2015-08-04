@@ -1,21 +1,20 @@
 import java.util.Scanner;
+import java.util.regex.Matcher;
 
 public class Game {
 
 	public static void main(String[] args) {
 		
-		int a;
-			 
 		Scanner in = new Scanner(System.in);
 	 
 		System.out.println("Enter a number");
-		a = in.nextInt();
+		String s = in.next();
 		
-		if (a % 10 == 3)
+		if (s.contains("3"))		
 			System.out.println("Boom");
-		else if (a % 10 == 7)
+		else if (s.contains("7"))
 			System.out.println("Pam");
-		else if (a % 10 == 9)
+		else if (s.contains("9"))
 			System.out.println("Else");
 	}
     
