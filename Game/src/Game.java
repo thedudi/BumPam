@@ -1,4 +1,6 @@
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -13,32 +15,38 @@ public class Game {
 		System.out.println("Enter a number");
 		String s = in.next();
 	
+	    HashMap<String,String> regex_map = new HashMap<String,String>();
+	    regex_map.put("3","Bum");
+	    regex_map.put("7","Pam");
+	    // ...
+	    // ...
+	    // Additional regex pattern can be added
+	    // in the format of regex_map.put("<REGEX PATTERN>",<"BAZZER">);
 
-	    Set<String> regex_set = new HashSet<String>();
-	    regex_set.add("3,Bum");
-	    regex_set.add("7,Pam");
-	     	
-			
-	    for (String regex_pattern : regex_set) {
-	    	String[] parts = regex_pattern.split(","); 		
-		 	Pattern p = Pattern.compile(parts[0]);
-		 	String buzzer = parts[1];
+	    Iterator<String> keySetIterator = regex_map.keySet().iterator();
+	    while(keySetIterator.hasNext())
+	    {
+	    	String key = keySetIterator.next();
+	    	String value = regex_map.get(key);
+	    	
+	    	Pattern p = Pattern.compile(key);
 		 	
-			String HasMatch = matchesPattern(p,s,buzzer);
+			boolean HasMatch = matchesPattern(p,s);
 				
-			if(HasMatch != null)
-				System.out.println(HasMatch);
-			}	     	
+			if(HasMatch)
+				System.out.println(value);
+			}
 	}
    
-	private static String matchesPattern(Pattern p,String s, String buzzer) {
-	     Matcher m = p.matcher(s);
+	private static boolean matchesPattern(Pattern p,String s) {
+	    boolean answer = false;
+	    
+		Matcher m = p.matcher(s);
 
-	     if (m.find()) {
-	       return buzzer;
-	     }
+	    if (m.find()) {
+	    	answer = true;
+	    	}
 
-	     return null;
-	   }
-    
+	    return answer;
+	    }    
 }
