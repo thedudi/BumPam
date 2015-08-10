@@ -31,22 +31,12 @@ public class Game {
 	    	
 	    	Pattern p = Pattern.compile(key);
 		 	
-			boolean HasMatch = matchesPattern(p,s);
-				
-			if(HasMatch)
+			if(matchesPattern(p,s))
 				System.out.println(value);
 			}
 	}
    
 	private static boolean matchesPattern(Pattern p,String s) {
-	    boolean answer = false;
-	    
-		Matcher m = p.matcher(s);
-
-	    if (m.find()) {
-	    	answer = true;
-	    	}
-
-	    return answer;
+			return p.matcher(s).find();
 	    }    
 }
